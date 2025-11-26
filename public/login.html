@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Health Locker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #e5ecf4;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 360px;
+      box-sizing: border-box;
+    }
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #1c5d99;
+    }
+    .field {
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+    button, a.btn-link {
+      padding: 9px 18px;
+      border-radius: 20px;
+      border: none;
+      background: #1c5d99;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    button:hover, a.btn-link:hover {
+      background: #163f69;
+    }
+    .small-link {
+      font-size: 12px;
+      text-decoration: none;
+      color: #1c5d99;
+    }
+    .small-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Patient Login</h2>
+    <form method="POST" action="/login">
+      <div class="field">
+        <label>Email ID</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" required>
+      </div>
+
+      <div class="btn-row">
+        <a href="/" class="btn-link">← Home</a>
+        <button type="submit">Login</button>
+      </div>
+
+      <p style="text-align:center; margin-top:10px; font-size:12px;">
+        New user? <a href="/register" class="small-link">Register here</a>
+      </p>
+    </form>
+  </div>
+</body>
+</html>

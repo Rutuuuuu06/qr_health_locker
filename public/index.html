@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Health Locker - Hospital Document System</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at top, #e3f2fd 0, #f5f7fb 55%, #e8f0fe 100%);
+      color: #102a43;
+    }
+    .shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#1565c0,#42a5f5);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:600;
+      font-size:18px;
+    }
+    .brand-text {
+      font-weight: 600;
+      color: #0d47a1;
+      font-size: 18px;
+    }
+    .tagline {
+      font-size: 12px;
+      color: #546e7a;
+    }
+    .nav-links a {
+      font-size: 14px;
+      margin-left: 18px;
+      text-decoration: none;
+      color: #1565c0;
+    }
+    .nav-links a:hover { text-decoration: underline; }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 20px;
+    }
+    .layout {
+      width: 100%;
+      max-width: 1080px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(15, 35, 52, 0.12);
+      padding: 26px 26px 24px;
+    }
+    .hero-title {
+      font-size: 26px;
+      font-weight: 650;
+      color: #0d47a1;
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: #546e7a;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+    .primary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.15s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1565c0, #1e88e5);
+      color: #fff;
+      box-shadow: 0 7px 20px rgba(21, 101, 192, 0.5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(21, 101, 192, 0.55);
+    }
+    .btn-ghost {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+    .quick-note {
+      font-size: 12px;
+      color: #78909c;
+      margin-top: 6px;
+    }
+    .status-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      font-size: 12px;
+    }
+    .status-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f1f8e9;
+      color: #558b2f;
+    }
+    .status-chip.warn {
+      background:#fff3e0;
+      color:#ef6c00;
+    }
+    .right-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .right-bg {
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at top left,#bbdefb 0,#e3f2fd 40%,transparent 70%);
+      opacity:0.8;
+      pointer-events:none;
+    }
+    .right-content {
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      justify-content:space-between;
+    }
+    .right-header {
+      margin-bottom: 10px;
+    }
+    .right-title {
+      font-size: 16px;
+      font-weight: 600;
+      color:#0d47a1;
+      margin-bottom:4px;
+    }
+    .metric-row {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+      font-size:12px;
+      color:#455a64;
+    }
+    .metric-badge {
+      padding:6px 10px;
+      border-radius:10px;
+      background:#ffffffaa;
+      backdrop-filter:blur(4px);
+    }
+    .preview-panel {
+      margin-top:10px;
+      background:#ffffffdd;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:12px;
+      color:#37474f;
+    }
+    .preview-title {
+      font-size:13px;
+      font-weight:600;
+      color:#1565c0;
+      margin-bottom:2px;
+    }
+    footer {
+      text-align:center;
+      padding:10px;
+      font-size:11px;
+      color:#78909c;
+    }
+    @media (max-width: 840px) {
+      main { padding: 12px; }
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <div class="logo-circle">H</div>
+        <div>
+          <div class="brand-text">Health Locker</div>
+          <div class="tagline">Hospital Document &amp; Report Locker</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="/login">Patient Login</a>
+        <a href="/register">New Patient</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="layout">
+        <section class="card">
+          <div class="hero-title">Secure Hospital Document System</div>
+          <div class="hero-sub">
+            Health Locker safely stores patient reports, prescriptions and test results.
+            Each upload generates a unique QR code. Doctors can open the record using
+            the QR and the patient password – just like a smart digital case file.
+          </div>
+
+          <div class="pill-row">
+            <span class="pill">QR-based access</span>
+            <span class="pill">Password protected</span>
+            <span class="pill">Cloud-ready Node.js backend</span>
+          </div>
+
+          <div class="primary-actions">
+            <a href="/register" class="btn btn-primary">🆕 Register New Patient</a>
+            <a href="/login" class="btn btn-ghost">🔐 Patient Login</a>
+          </div>
+
+          <div class="quick-note">
+            Tip: After login, patients can upload reports and view all their previous
+            documents inside the <b>My Documents</b> section.
+          </div>
+
+          <div class="status-strip">
+            <span class="status-chip">✔ Data stored in database</span>
+            <span class="status-chip">✔ QR code for every document</span>
+            <span class="status-chip warn">Only authorised persons with password can view files</span>
+          </div>
+        </section>
+
+        <section class="card right-card">
+          <div class="right-bg"></div>
+          <div class="right-content">
+            <div class="right-header">
+              <div class="right-title">What this system demonstrates</div>
+              <div class="metric-row">
+                <span class="metric-badge">Node + Express + SQLite</span>
+                <span class="metric-badge">File uploads with Multer</span>
+                <span class="metric-badge">QR code generation</span>
+              </div>
+            </div>
+
+            <div class="preview-panel">
+              <div class="preview-title">Sample Workflow</div>
+              <div>1. Patient registers and gets a Patient ID.</div>
+              <div>2. Patient uploads a medical report (PDF / image).</div>
+              <div>3. System generates a QR + secure record link.</div>
+              <div>4. Doctor scans QR, enters password, views report.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      Health Locker – Academic Project: QR &amp; Password Based Hospital Document System
+    </footer>
+  </div>
+</body>
+</html>

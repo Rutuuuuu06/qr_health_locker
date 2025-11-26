@@ -1,0 +1,23 @@
+{
+  "name": "healthlocker",
+  "version": "1.0.0",
+  "description": "Single file Health Locker with QR System",
+  "main": "priyanka.js",
+  "scripts": {
+    "start": "node priyanka.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "qrcode": "^1.5.4",
+    "pg": "^8.11.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
